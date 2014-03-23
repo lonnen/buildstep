@@ -40,6 +40,7 @@ python-dev
 ruby1.9.1-dev
 rubygems
 socat
+software-properties-common
 sqlite3
 telnet
 zlib1g-dev

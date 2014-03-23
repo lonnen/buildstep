@@ -1,5 +1,5 @@
-FROM ubuntu:quantal
-MAINTAINER progrium "progrium@gmail.com"
+FROM ubuntu:raring
+MAINTAINER lonnen "lonnen@mozilla.com"
 
 RUN mkdir /build
 ADD ./stack/ /build
