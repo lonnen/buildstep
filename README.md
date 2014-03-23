@@ -1,8 +1,8 @@
 # Doozer
 
-Builds dockers that run tests. Forked from the Dokku buildstep component, and for computability with Davis-CI's dokku libs it still uses the buildstep file terminology for now.
+Builds dockers that run tests. Forked from the Dokku buildstep component, and for compatibility with Davis-CI's dokku libs it still mirrors the buildstep api file names.
 
-Parses `.travis.yml` files and respects a very minimal subset of the options available to get things running. Right now that means only `env` vars and the `script` entry point. There is no build matrix, all env vars are dumped in at once. It doesn't respect the pre-build install steps that you might usually use to set up your deps, or the language field. Instead a bunch of interpreters are on the PATH.
+Parses `.travis.yml` files and respects a very minimal subset of the options available to get things running. Right now that means only `env` vars and the `script` entry point. There is no build matrix; all env vars are dumped in at once. It doesn't respect the pre-build install steps that you might usually use to set up your deps, or the language field. Instead all projects default to a an omni-env with a bunch of stuff on the PATH.
 
 Currently supports the following interpreters:
 
@@ -13,7 +13,7 @@ Currently supports the following interpreters:
     python3    3.3.1
     node       0.10.25
 
-as well as whatever binaries you want to compile against an otherwise stock ubuntu:raring machine.
+as well as whatever binaries you want to compile against an otherwise stock ubuntu:raring machine. Vendor those and any deps you have before submitting.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ This will create a container called `lonnen/buildstep` that contains the builder
 
 ## Building an App
 
-Running the buildstep script will take an application tar via STDIN and an application container name as an argument. It will put the application in a new container based on `lonnen/buildstep` with the specified name. Then it runs the builder script inside the container.
+Running the buildstep script will take an application tar via STDIN and an application container name as an argument. It will put the application in a new container based on `lonnen/buildstep` with the specified name. Then it runs the builder script inside the container, which creates the docker testrunner.
 
     $ cat myapp.tar | ./buildstep myapp
 
@@ -43,9 +43,9 @@ The resulting container has a built app ready to go. Run your tests with:
 
     $ docker run -d myapp /bin/bash -c "/start"
 
-## Extending
+## Extending and Developing
 
-Buildstep does not support buildpacks. If you need to add additional capabilities, you can add additional packages in `stack/packages` or `stack/prepare` and rebuild buildstep.
+Buildstep does not support `.travis.yml` entry points for installing additional packages. Vendor what you can. If you need to make fundamental changes you can add additional packages in `stack/packages` or `stack/prepare` and rebuild buildstep.
 
 Modifications to `stack/builder` do not require a recompile of buildstep, and should take effect the next time you build a container.
 
