@@ -18,7 +18,7 @@ echo "-----> Getting to know your project"
 }
 
 mkdir -p $build_root/.profile.d
-$(ruby -e "require 'yaml';(YAML.load_file('$build_root/.travis.yml')['env'] || {}).each{|k| puts k}") > $build_root/.profile.d/config_vars
+ruby -e "require 'yaml';(YAML.load_file('$build_root/.travis.yml')['env'] || {}).each{|k| puts k}" > $build_root/.profile.d/config_vars
 
 cat > /exec <<EOF
 #!/bin/bash
