@@ -23,6 +23,7 @@ EOF
 chmod +x /exec
 
 cat > /start <<EOF
+cd /app
 ./runtests reference/ puzzles/
 EOF
 chmod +x /start
