@@ -12,14 +12,6 @@ mkdir -p $build_root/.profile.d
 
 echo "-----> Getting to know your project ..."
 
-[[ -f "$build_root/.travis.yml" ]] || {
-  echo "       Unable to load .travis.yml file! Aborting"
-  exit 1
-}
-
-mkdir -p $build_root/.profile.d
-ruby -e "require 'yaml';(YAML.load_file('$build_root/.travis.yml')['env'] || {}).each{|k| puts k}" > $build_root/.profile.d/config_vars
-
 cat > /exec <<EOF
 #!/bin/bash
 export HOME=/app
@@ -31,12 +23,7 @@ EOF
 chmod +x /exec
 
 cat > /start <<EOF
-#!/bin/bash
-export HOME=/app
-for file in $app_root/.profile.d/*; do source \$file; done
-hash -r
-cd $app_root
-ruby -e "require 'yaml'; puts YAML.load_file('.travis.yml')['script']" | bash
+./runtests reference/ puzzles/
 EOF
 chmod +x /start
 
