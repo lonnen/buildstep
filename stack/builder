@@ -10,10 +10,10 @@ cp -r /app /build
 mkdir -p $cache_root
 mkdir -p $build_root/.profile.d
 
-echo "-----> Getting to know your project"
+echo "-----> Getting to know your project ..."
 
 [[ -f "$build_root/.travis.yml" ]] || {
-  echo "       Unable to load .travis.yml file! Aborting..."
+  echo "       Unable to load .travis.yml file! Aborting"
   exit 1
 }
 
