@@ -3,9 +3,14 @@ set -e
 NAME="$1"
 TAG="$2"
 
+# Place the tests inside the container
+cat /puzzles/puzzles.tar | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app"
+
+# Place the contestent's name inside the container
+docker run -i -a stdin lonnen/buildstep /bin/bash -c "export PLAYER=$NAME"
 
 # Place the app inside the tests directory
-ID=$(cat | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app")
+ID=$(cat | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app/solutions && tar -xC /app/solutions")
 test $(docker wait $ID) -eq 0
 docker commit $ID $NAME $TAG > /dev/null
 
