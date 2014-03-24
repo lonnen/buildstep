@@ -47,8 +47,6 @@ The resulting container has a built app ready to go. Run your tests with:
 
 Buildstep does not support `.travis.yml` entry points for installing additional packages. Vendor what you can. If you need to make fundamental changes you can add additional packages in `stack/packages` or `stack/prepare` and rebuild buildstep.
 
-Modifications to `stack/builder` do not require a recompile of buildstep, and should take effect the next time you build a container.
-
 ## License
 
 MIT
