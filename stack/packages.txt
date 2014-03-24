@@ -1,4 +1,5 @@
 autoconf
+bc
 bind9-host
 bison
 build-essential
