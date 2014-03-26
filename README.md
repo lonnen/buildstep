@@ -6,9 +6,11 @@ Parses `.travis.yml` files and respects a very minimal subset of the options ava
 
 Currently supports the following interpreters:
 
+    bash       4.2.45
     java       1.6.0_27
     ruby       1.9.3
     ruby1.8    1.8.7
+    php        5.4.9-4
     python     2.7.4
     python3    3.3.1
     node       0.10.25
