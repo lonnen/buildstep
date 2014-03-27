@@ -35,7 +35,7 @@ openjdk-6-jdk
 openjdk-6-jre-headless
 openssh-client
 openssh-server
-PHP 5.4.9-4
+php5
 postgresql
 postgresql-server-dev-9.1
 python-dev
