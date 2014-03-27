@@ -12,5 +12,4 @@ xargs apt-get install -y --force-yes < /build/packages.txt
 add-apt-repository -y ppa:chris-lea/node.js
 apt-get update
 apt-get -y dist-upgrade nodejs
-ln -s /usr/bin/nodejs /usr/bin/node
 apt-get clean
